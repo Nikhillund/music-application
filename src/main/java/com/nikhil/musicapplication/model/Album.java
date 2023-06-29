@@ -12,17 +12,18 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@ToString(exclude = "dependent_set")
-@EqualsAndHashCode(exclude = "dependent_set")
-public class Album extends BaseModel{
+public class Album extends BaseModel {
     @OneToOne
     private Artist artist;
     private String name;
+    @EqualsAndHashCode.Exclude
     @OneToMany
     private Set<Song> songs;
     public Genre genre;
+    @EqualsAndHashCode.Exclude
     @ManyToMany(mappedBy = "albums", cascade = CascadeType.ALL)
     private Set<Playlist> playlists;
+    @EqualsAndHashCode.Exclude
     @ManyToMany(mappedBy = "likedAlbums", cascade = CascadeType.ALL)
     private Set<User> likeByUsers;
 }

@@ -8,15 +8,15 @@ import java.util.Set;
 
 @Entity
 @Data
-@ToString(exclude = "dependent_set")
-@EqualsAndHashCode(exclude = "dependent_set")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Artist extends BaseModel{
 
     private String name;
+    @EqualsAndHashCode.Exclude
     @ManyToMany(cascade = CascadeType.ALL)
     private Set<Song> songs;
+    @EqualsAndHashCode.Exclude
     @OneToMany(cascade = CascadeType.ALL)
     private Set<Album> albums;
     @Column(name = "artist_rank")

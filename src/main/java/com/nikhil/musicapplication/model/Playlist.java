@@ -11,10 +11,9 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(exclude = "dependent_set")
-@EqualsAndHashCode(exclude = "dependent_set")
 public class Playlist extends BaseModel{
     private String name;
+    @EqualsAndHashCode.Exclude
     @ManyToMany
     @JoinTable(
             name = "playlist_songs",
@@ -22,6 +21,7 @@ public class Playlist extends BaseModel{
             inverseJoinColumns = @JoinColumn(name = "songs_id")
     )
     private Set<Song> songs;
+    @EqualsAndHashCode.Exclude
     @ManyToMany
     @JoinTable(
             name = "playlist_albums",
@@ -30,6 +30,7 @@ public class Playlist extends BaseModel{
     )
     private Set<Album> albums;
     private BigInteger likes = BigInteger.valueOf(0);
+    @EqualsAndHashCode.Exclude
     @ManyToOne
     private User owner;
     private Visibility visibility;
